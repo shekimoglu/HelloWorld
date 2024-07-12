@@ -1,28 +1,51 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.List;
+
 public class Main {
+    private static final ListManager listManager = new ListManager();
+
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
-        }
-        System.out.println("Hello World");
-
-        //./gradlew run -Dcommand=addItems -Dexec.args="rando1 rando2 rando3 rando4"
         String command = System.getProperty("command");
         String items = System.getProperty("exec.args");
-        System.out.println("command = " + command);
-        System.out.println("exec.args = " + items);
-        System.out.println(args.length);
 
+        if (command == null || command.isEmpty()) { return; }
+
+        switch (command) {
+            case "addItems" -> {
+                if (items == null || items.isEmpty()) { return; }
+
+                String[] itemsArray = items.split(" ");
+                listManager.addItems(itemsArray);
+            }
+            case "removeItems" ->  {
+                if (items == null || items.isEmpty()) { return; }
+                String[] itemsArray = items.split(" ");
+                List<String> list = listManager.removeItems(itemsArray);
+                System.out.println(list.toString());
+            }
+            case "getList" ->  {
+                System.out.println("getList");
+                List<String> list = listManager.getList();
+                System.out.println(list.toString());
+            }
+            case "sortList" ->  {
+                System.out.println("sortList");
+                List<String> list;
+
+                if (items != null) {
+                    list = listManager.sortList(true);
+                }
+                else {
+                    list = listManager.sortList(false);
+                }
+
+                System.out.println(list.toString());
+            }
+            case "resetList" -> {
+                System.out.println("resetList");
+                listManager.resetList();
+            }
+        }
     }
 }

@@ -72,5 +72,13 @@ public class Training1 {
         }
 
         //add git branch
+
+        //./gradlew run -Dcommand=addItems -Dexec.args="rando1 rando2 rando3 rando4"
+        String command = System.getProperty("command");
+        String items = System.getProperty("exec.args");
+        System.out.println("command = " + command);
+        System.out.println("exec.args = " + items);
+        System.out.println(args.length);
+
     }
 }
