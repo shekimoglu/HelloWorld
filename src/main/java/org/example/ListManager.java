@@ -17,10 +17,13 @@ public class ListManager {
         list = storage.read();
         return list;
     }
+    //Create setList() method has not been implemented. When provided a list of items, it will replace the entire contents of the list if there is at least one item.Otherwise, it should do nothing.
+
 
     public List<String> setList(String[] items){
-        list = new ArrayList<>();
-        return addItems(items);
+        list = List.of(items);
+        storage.write(items, false);
+        return list;
     }
 
     public List<String> addItems(String[] items){
