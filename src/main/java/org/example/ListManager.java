@@ -30,9 +30,9 @@ public class ListManager {
     }
 
     public List<String> removeItems(String[] items){
-        for (String item : items) {
-            list.remove(item);
-        }
+        list = storage.read();
+        list.removeAll(List.of(items));
+        storage.write(list.toArray(new String[0]), false);
 
         return list;
     }
