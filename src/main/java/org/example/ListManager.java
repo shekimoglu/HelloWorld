@@ -14,6 +14,7 @@ public class ListManager {
     }
 
     public List<String> getList(){
+        list = storage.read();
         return list;
     }
 
@@ -24,6 +25,7 @@ public class ListManager {
 
     public List<String> addItems(String[] items){
         list.addAll(List.of(items));
+        storage.append(items);
         return list;
     }
 
