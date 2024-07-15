@@ -1,6 +1,9 @@
 package org.example.unitTest;
 
 public class HairSalon {
+
+    private int hairCutPrice = 20;
+    private Calculator calculator = new Calculator();
     private String [] openingDays ={
         "Monday",
         "Tuesday",
@@ -16,6 +19,14 @@ public class HairSalon {
             return true;
         else
             return false;
+    }
+
+    public int getHairCutPrice() {
+        return hairCutPrice;
+    }
+
+    public double applyDiscount() {
+        return calculator.divide(hairCutPrice,2)+5;
     }
 
 
